@@ -8,6 +8,7 @@ class Board(models.Model):
 
     def __str__(self):
         return self.name
+
         
                 
 class Topic(models.Model):
@@ -16,6 +17,8 @@ class Topic(models.Model):
     board = models.ForeignKey(Board, on_delete=models.CASCADE, related_name='topics')
     starter = models.ForeignKey(User, on_delete=models.CASCADE, related_name='topics')
     last_updated = models.DateTimeField(auto_now_add=True)
+    def __str__(self):
+        return self.subject
 
 
 class Post(models.Model):
@@ -26,3 +29,6 @@ class Post(models.Model):
     created_by = models.ForeignKey(User, on_delete=models.CASCADE, related_name='posts')
     updated_by = models.ForeignKey(User, on_delete=models.CASCADE, null=True, related_name='+')
     updated_by = models.ForeignKey(User,on_delete=models.CASCADE,  null=True, related_name='+')
+    def __str__(self):
+        truncated_message = Truncator(self.message)
+        return truncated_message.chars(30)
