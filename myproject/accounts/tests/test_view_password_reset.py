@@ -7,8 +7,9 @@ from django.contrib.auth.models import User
 from django.urls import reverse
 from django.urls import resolve
 from django.test import TestCase
-
-
+from django.core import mail
+from django.contrib.auth.forms import PasswordResetForm
+from django.core import mail
 
 class PasswordResetConfirmTests(TestCase):
     def setUp(self):
